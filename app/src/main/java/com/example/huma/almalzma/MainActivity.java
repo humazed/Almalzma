@@ -1,17 +1,22 @@
 package com.example.huma.almalzma;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 
 import com.parse.ParseUser;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ListActivity {
+
 
     protected ParseUser mCurrentUser;
+
+    int mGrade;
+    String[] mSubjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +27,32 @@ public class MainActivity extends ActionBarActivity {
         if (mCurrentUser == null) {
             // show the signup or login screen
             startActivity(new Intent(this, LoginActivity.class));
-        } else {
-            // do stuff with the user
+        }
+        // do stuff with the user
+        else {
+            //get the user grade to show him the right subjects.
+            mGrade = mCurrentUser.getInt("grade");
+
+            //switch the user grade to show him the right subjects.
+            switch (mGrade) {
+                case 0: //prep
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_1_1);
+                    break;
+                case 1: //1
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_1_2);
+                    break;
+                case 2: //2
+
+                    break;
+                case 3: //3
+
+                    break;
+                case 4: //4
+
+                    break;
+            }
+            setListAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mSubjects));
+
         }
 
 

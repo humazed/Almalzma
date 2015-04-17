@@ -19,6 +19,7 @@
     <string name="select_message">Please choose your grade</string>
     <string name="logout">Log out</string>
     <string name="password_not_match_error_message">Password not matching</string>
+    <string name="empty_message">Cumming soon</string>
 
     <string-array name="grades">
         <item>Prep</item>
@@ -26,6 +27,23 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+    </string-array>
+    
+    <string-array name="subjects_1_1">
+        <item>Programming</item>
+        <item>Electronics</item>
+        <item>Math</item>
+        <item>Circuits</item>
+        <item>Measure</item>
+        <item>English</item>
+    </string-array>
+
+    <string-array name="subjects_1_2">
+        <item>Algorithms</item>
+        <item>Electronics</item>
+        <item>Math</item>
+        <item>Fields</item>
+        <item>Realisation subject</item>
     </string-array>
 
 </resources>

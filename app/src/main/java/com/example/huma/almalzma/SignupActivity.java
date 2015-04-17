@@ -85,7 +85,7 @@ public class SignupActivity extends ActionBarActivity {
                         user.setPassword(mPassword);
                         user.setEmail(mEmail);
                         user.put("pass", mPassword);
-                        user.put("grade", mGrade);
+                        user.put(ParseConstants.KEY_GRADE, mGrade);
 
                         user.signUpInBackground(new SignUpCallback() {
                             public void done(ParseException e) {
