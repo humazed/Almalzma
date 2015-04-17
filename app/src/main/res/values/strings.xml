@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Almalzma</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_signup">SignupActivity</string>
+
+    <string name="email">Please enter your E-mail</string>
+    <string name="name">Please enter your Name</string>
+    <string name="password">Please enter your password</string>
+    <string name="password_confirm">Please confirm your password</string>
+
+    <string name="login">Log in</string>
+    <string name="signup">Sign up</string>
+
+    <string name="error_title">Oooops…</string>
+    <string name="signup_error_message">Please fill the empty fields</string>
+    <string name="select_message">Please choose your grade</string>
+    <string name="logout">Log out</string>
+    <string name="password_not_match_error_message">Password not matching</string>
+
+    <string-array name="grades">
+        <item>Prep</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+</resources>
