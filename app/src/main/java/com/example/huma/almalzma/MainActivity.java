@@ -64,7 +64,7 @@ public class MainActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        startActivity(new Intent(this, WeeksActivity.class));
+        startActivity(new Intent(this, SubjectActivity.class));
     }
 
     @Override
