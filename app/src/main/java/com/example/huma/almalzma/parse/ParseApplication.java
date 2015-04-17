@@ -1,4 +1,4 @@
-package com.example.huma.almalzma;
+package com.example.huma.almalzma.parse;
 
 import android.app.Application;
 

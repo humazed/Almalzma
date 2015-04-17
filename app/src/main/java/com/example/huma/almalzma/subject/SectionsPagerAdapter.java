@@ -1,9 +1,11 @@
-package com.example.huma.almalzma;
+package com.example.huma.almalzma.subject;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.huma.almalzma.R;
 
 import java.util.Locale;
 
@@ -22,9 +24,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return SubjectActivity.PlaceholderFragment.newInstance(position + 1);
+      //choose what Fragment to display according to tabs.
+        switch (position) {
+            case 0:
+                return new LecturesFragment();
+            case 1:
+                return new SectionsFragment();
+            case 2:
+                return new AnnouncementsFragment();
+        }
+        return null;
     }
 
     @Override

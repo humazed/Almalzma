@@ -1,4 +1,4 @@
-package com.example.huma.almalzma;
+package com.example.huma.almalzma.subject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.huma.almalzma.R;
 
 
 public class SubjectActivity extends ActionBarActivity implements ActionBar.TabListener {

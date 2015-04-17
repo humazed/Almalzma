@@ -1,4 +1,4 @@
-package com.example.huma.almalzma;
+package com.example.huma.almalzma.parse;
 
 /**
  * Created by huma on 4/17/2015.

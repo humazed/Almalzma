@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.huma.almalzma.parse.ParseConstants;
+import com.example.huma.almalzma.subject.SubjectActivity;
 import com.parse.ParseUser;
 
 

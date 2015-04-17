@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.huma.almalzma.parse.ParseConstants;
 import com.mingle.widget.LoadingView;
 import com.parse.ParseException;
 import com.parse.ParseUser;
