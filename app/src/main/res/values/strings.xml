@@ -46,4 +46,34 @@
         <item>Realisation subject</item>
     </string-array>
 
+    <string-array name="weeks">
+        <item>week 1</item>
+        <item>week 2</item>
+        <item>week 3</item>
+        <item>week 4</item>
+        <item>week 5</item>
+        <item>week 6</item>
+        <item>week 7</item>
+        <item>week 8</item>
+        <item>week 9</item>
+        <item>week 10</item>
+        <item>week 11</item>
+        <item>week 12</item>
+        <item>week 13</item>
+        <item>week 14</item>
+        <item>week 15</item>
+        <item>week 16</item>
+        <item>week 17</item>
+        <item>week 18</item>
+        <item>week 19</item>
+        <item>week 20</item>
+        <item>week 21</item>
+        <item>week 22</item>
+        <item>week 23</item>
+        <item>week 24</item>
+        <item>week 25</item>
+    </string-array>
+    <string name="title_activity_weeks">WeeksActivity</string>
+    <string name="title_activity_weed_details">WeedDetailsActivity</string>
+
 </resources>

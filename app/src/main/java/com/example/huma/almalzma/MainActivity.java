@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.parse.ParseUser;
 
@@ -31,7 +33,7 @@ public class MainActivity extends ListActivity {
         // do stuff with the user
         else {
             //get the user grade to show him the right subjects.
-            mGrade = mCurrentUser.getInt("grade");
+            mGrade = mCurrentUser.getInt(ParseConstants.KEY_GRADE);
 
             //switch the user grade to show him the right subjects.
             switch (mGrade) {
@@ -39,7 +41,7 @@ public class MainActivity extends ListActivity {
                     mSubjects = this.getResources().getStringArray(R.array.subjects_1_1);
                     break;
                 case 1: //1
-                    mSubjects = this.getResources().getStringArray(R.array.subjects_1_2);
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_1_1);
                     break;
                 case 2: //2
 
@@ -58,6 +60,12 @@ public class MainActivity extends ListActivity {
 
     }
 
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        startActivity(new Intent(this, WeeksActivity.class));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
