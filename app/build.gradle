@@ -25,4 +25,5 @@ dependencies {
     compile 'com.parse.bolts:bolts-android:1.+'
     compile fileTree(include: 'Parse-*.jar', dir: 'libs')
     compile project(':shapeloading')
+    compile 'com.github.clans:fab:1.4.0'
 }
