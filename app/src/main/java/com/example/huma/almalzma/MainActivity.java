@@ -24,11 +24,13 @@ import com.parse.ParseUser;
 public class MainActivity extends ActionBarActivity {
 
 
+    private ListView mSubjectsListView;
+    private TextView mEmptyTextView;
+
     protected ParseUser mCurrentUser;
-
     String mGrade;
-    String[] mSubjects = {};
 
+    String[] mSubjects = {};
     private int mPreviousVisibleItem;
 
     @Override
@@ -36,8 +38,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView mSubjectsListView = (ListView) findViewById(R.id.subjects_list_view);
-        TextView mEmptyTextView = (TextView) findViewById(R.id.empty);
+        mSubjectsListView = (ListView) findViewById(R.id.subjects_list_view);
+        mEmptyTextView = (TextView) findViewById(R.id.empty);
 
         mCurrentUser = ParseUser.getCurrentUser();
         if (mCurrentUser == null) {
