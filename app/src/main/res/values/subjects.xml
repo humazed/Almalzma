@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="subjects_0_1">
+        <item>Math</item>
+        <item>physics</item>
+        <item>English</item>
+        <item>Realisation</item>
+        <item>subject</item>
+    </string-array>
+
+    <string-array name="subjects_0_2">
+        <item> chemistry </item>
+        <item>Math</item>
+        <item>fekh</item>
+        <item>wasfya</item>
+        <item>Entag</item>
+        <item>mechanics</item>
+    </string-array>
+
+    <string-array name="subjects_n_1_1">
+        <item>Programming</item>
+        <item>Electronics</item>
+        <item>Math</item>
+        <item>Circuits</item>
+        <item>Measure</item>
+        <item>English</item>
+    </string-array>
+
+    <string-array name="subjects_n_1_2">
+        <item>Algorithms</item>
+        <item>Electronics</item>
+        <item>Math</item>
+        <item>Fields</item>
+        <item>Realisation subject</item>
+    </string-array>
+
+
+    <string-array name="subjects_n_2_1">
+        <item> Math </item>
+        <item> Integrated circuits </item>
+        <item> Systems and signals </item>
+        <item> machines  VHDL</item>
+        <item> Numerical Analysis</item>
+        <item> Object-oriented programming</item>
+        <item> Tests</item>
+        <item>Realisation subject</item>
+    </string-array>
+
+    <string-array name="subjects_n_2_2">
+        <item>Math</item>
+        <item>Logical circuits</item>
+        <item>Automatic Control</item>
+        <item>Electric machines</item>
+        <item>Religious subjects</item>
+        <item>Realisation subject</item>
+    </string-array>
+
+    <string-array name="subjects_n_3_1">
+        <item>Math</item>
+        <item>Communications systems</item>
+        <item>Electronics</item>
+        <item>Religious subjects</item>
+        <item>Operating system</item>
+        <item>Digital Control</item>
+        <item> Tests </item>
+        <item> Transition systems and mechanisms </item>
+        <item> Power electric systems </item>
+        <item>Realisation subject</item>
+    </string-array>
+
+    <string-array name="subjects_n_3_2">
+        <item> Databases </item>
+        <item> Microprocessors </item>
+        <item> Administration and engineering projects </item>
+        <item> Sensors of adapters </item>
+        <item> Religious subjects </item>
+        <item>Realisation subject</item>
+    </string-array>
+
+    <string-array name="subjects_n_4_1">
+        <item>Special computer subject</item>
+        <item>Tests</item>
+        <item>Engineering programming</item>
+        <item> Intelligent Systems</item>
+        <item>Computer architecture</item>
+        <item>Interpreters</item>
+        <item>Advanced software</item>
+        <item>Realisation subject</item>
+    </string-array>
+
+    <string-array name="subjects_n_4_2">
+        <item>Algorithms</item>
+        <item>Advanced software</item>
+        <item>Computer architecture</item>
+        <item>Interpreters</item>
+        <item>Realisation subject</item>
+    </string-array>
+
+
+</resources>

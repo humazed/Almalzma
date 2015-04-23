@@ -51,7 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/spinners_linearLayout"
+        android:layout_marginTop="61dp"
         android:text="@string/signup" />
 
     <EditText
@@ -65,22 +66,70 @@
         android:hint="@string/name"
         android:inputType="textPersonName" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/password_confirm_signup"
-        android:spinnerMode="dialog"
-        android:prompt="@string/select_message"
-        android:entries="@array/grades"/>
-
     <com.mingle.widget.LoadingView
         android:id="@+id/signup_loading_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/spinners_linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <Spinner
+            android:id="@+id/department_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:entries="@array/departments"
+            android:prompt="@string/department_select_message"
+            android:spinnerMode="dropdown" />
+
+        <Spinner
+            android:id="@+id/grade_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:entries="@array/grades"
+            android:prompt="@string/grade_select_message"
+            android:spinnerMode="dropdown"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/text_view_linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/password_confirm_signup"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/department_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="@string/department_select_message" />
+
+        <TextView
+            android:id="@+id/grade_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="@string/grade_select_message"
+            android:visibility="invisible" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

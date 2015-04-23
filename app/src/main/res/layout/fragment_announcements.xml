@@ -8,7 +8,7 @@
         android:id="@android:id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/empty_message" />
+        android:text="@string/coming_soon_message" />
 
     <ListView
         android:id="@android:id/list"

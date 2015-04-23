@@ -19,40 +19,35 @@
 
     <string name="error_title">Oooops…</string>
     <string name="signup_error_message">Please fill the empty fields</string>
-    <string name="select_message">Please choose your grade</string>
+    <string name="grade_select_message">Please choose your grade</string>
+    <string name="department_select_message">Please choose your Department</string>
     <string name="logout">Log out</string>
     <string name="password_not_match_error_message">Password not matching</string>
-    <string name="empty_message">Cumming soon</string>
+    <string name="coming_soon_message">Coming soon</string>
 
     <!--title of the SubjectActivity tabs-->
     <string name="title_section1">Lectures</string>
     <string name="title_section2">Sections</string>
     <string name="title_section3">Announcements</string>
 
-    <string-array name="grades">
+    <string-array name="departments">
         <item>Prep</item>
+        <item>Systems and computer engineering</item>
+        <item>Petrol engineering</item>
+        <item>Electrical engineering</item>
+        <item>Architecture engineering</item>
+        <item>Civil engineering</item>
+        <item>Mechanical engineering</item>
+        <item>Urban design engineering</item>
+    </string-array>
+
+    <string-array name="grades">
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
     </string-array>
 
-    <string-array name="subjects_1_1">
-        <item>Programming</item>
-        <item>Electronics</item>
-        <item>Math</item>
-        <item>Circuits</item>
-        <item>Measure</item>
-        <item>English</item>
-    </string-array>
-
-    <string-array name="subjects_1_2">
-        <item>Algorithms</item>
-        <item>Electronics</item>
-        <item>Math</item>
-        <item>Fields</item>
-        <item>Realisation subject</item>
-    </string-array>
 
     <string-array name="weeks">
         <item>week 1</item>

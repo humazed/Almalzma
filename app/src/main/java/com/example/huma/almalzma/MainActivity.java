@@ -31,21 +31,20 @@ public class MainActivity extends ActionBarActivity {
 
     private int mPreviousVisibleItem;
 
-    private ListView mSubjectsListView;
-    private TextView mEmptyTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSubjectsListView = (ListView) findViewById(R.id.subjects_list_view);
-        mEmptyTextView = (TextView) findViewById(R.id.empty);
+        ListView mSubjectsListView = (ListView) findViewById(R.id.subjects_list_view);
+        TextView mEmptyTextView = (TextView) findViewById(R.id.empty);
 
         mCurrentUser = ParseUser.getCurrentUser();
         if (mCurrentUser == null) {
             // show the signup or login screen
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
         // do stuff with the user
         else {
@@ -55,19 +54,19 @@ public class MainActivity extends ActionBarActivity {
             //switch the user grade to show him the right subjects.
             switch (mGrade) {
                 case 0: //prep
-                    mSubjects = this.getResources().getStringArray(R.array.subjects_1_1);
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_n_1_1);
                     break;
                 case 1: //1
-                    mSubjects = this.getResources().getStringArray(R.array.subjects_1_1);
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_n_1_1);
                     break;
                 case 2: //2
-
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_n_2_1);
                     break;
                 case 3: //3
-
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_n_3_1);
                     break;
                 case 4: //4
-
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_n_4_1);
                     break;
             }
             mSubjectsListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mSubjects));

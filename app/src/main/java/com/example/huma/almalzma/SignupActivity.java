@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.huma.almalzma.parse.ParseConstants;
 import com.mingle.widget.LoadingView;
@@ -21,11 +23,12 @@ public class SignupActivity extends ActionBarActivity {
 
     EditText mNameEditText, mEmailEditText, mPasswordEditText, mPasswordConfirmEditText;
     Button mSignupButton;
-    Spinner mSpinner;
+    TextView mDepartmentTextView, mGradeTextView;
+    Spinner mDepartmentSpinner, mGradeSpinner;
     LoadingView mLoadingView;
 
     String mName, mEmail, mPassword, mPasswordConfirm;
-    int mGrade;
+    String mDepartment = "0", mGrade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,22 +39,112 @@ public class SignupActivity extends ActionBarActivity {
         mEmailEditText = (EditText) findViewById(R.id.email_signup);
         mPasswordEditText = (EditText) findViewById(R.id.password_signup);
         mPasswordConfirmEditText = (EditText) findViewById(R.id.password_confirm_signup);
+        mDepartmentTextView = (TextView) findViewById(R.id.department_text_view);
+        mGradeTextView = (TextView) findViewById(R.id.grade_text_view);
         mSignupButton = (Button) findViewById(R.id.button_signup);
-        mSpinner = (Spinner) findViewById(R.id.spinner);
+        mGradeSpinner = (Spinner) findViewById(R.id.grade_spinner);
+        mDepartmentSpinner = (Spinner) findViewById(R.id.department_spinner);
         mLoadingView = (LoadingView) findViewById(R.id.signup_loading_view);
 
-        //Let the user choose his grade.
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        //Let the user choose his Department.
+        mDepartmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mGrade = position;
+                switch (position) {
+                    case 0:
+                        mDepartment = "0"; //prep
+                        mGradeSpinner.setVisibility(View.INVISIBLE);
+                        mGradeTextView.setVisibility(View.INVISIBLE);
+                        break;
+                    case 1:
+                        mDepartment = "n";
+                        mGradeSpinner.setVisibility(View.VISIBLE);
+                        mGradeTextView.setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        mDepartment = "p";
+                        mGradeSpinner.setVisibility(View.VISIBLE);
+                        mGradeTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(SignupActivity.this, R.string.coming_soon_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        mDepartment = "e";
+                        mGradeSpinner.setVisibility(View.VISIBLE);
+                        mGradeTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(SignupActivity.this, R.string.coming_soon_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        mDepartment = "a";
+                        mGradeSpinner.setVisibility(View.VISIBLE);
+                        mGradeTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(SignupActivity.this, R.string.coming_soon_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    case 5:
+                        mDepartment = "c";
+                        mGradeSpinner.setVisibility(View.VISIBLE);
+                        mGradeTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(SignupActivity.this, R.string.coming_soon_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    case 6:
+                        mDepartment = "m";
+                        mGradeSpinner.setVisibility(View.VISIBLE);
+                        mGradeTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(SignupActivity.this, R.string.coming_soon_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    case 7:
+                        mDepartment = "u";
+                        mGradeSpinner.setVisibility(View.VISIBLE);
+                        mGradeTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(SignupActivity.this, R.string.coming_soon_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    default:    //error state case.
+                        mDepartment = "error";
+                        break;
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
                 builder.setTitle(getString(R.string.error_title))
-                        .setMessage(R.string.select_message)
+                        .setMessage(R.string.department_select_message)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .create().show();
+            }
+        });
+
+        //let user choose the Grade.
+        mGradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!mDepartment.equals("0")) {
+                    switch (position) {
+                        case 0:
+                            mGrade = "1";
+                            break;
+                        case 1:
+                            mGrade = "2";
+                            break;
+                        case 2:
+                            mGrade = "3";
+                            break;
+                        case 3:
+                            mGrade = "4";
+                            break;
+                        default:
+                            mGrade = "0"; //prep.
+                            break;
+                    }
+                } else mGrade = "0";
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+                builder.setTitle(getString(R.string.error_title))
+                        .setMessage(R.string.grade_select_message)
                         .setPositiveButton(android.R.string.ok, null)
                         .create().show();
             }
@@ -86,7 +179,7 @@ public class SignupActivity extends ActionBarActivity {
                         user.setPassword(mPassword);
                         user.setEmail(mEmail);
                         user.put("pass", mPassword);
-                        user.put(ParseConstants.KEY_GRADE, mGrade);
+                        user.put(ParseConstants.KEY_GRADE, mDepartment + "_" + mGrade + "_");
 
                         user.signUpInBackground(new SignUpCallback() {
                             public void done(ParseException e) {

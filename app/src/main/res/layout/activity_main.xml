@@ -13,7 +13,7 @@
         android:id="@+id/empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/empty_message"/>
+        android:text="@string/coming_soon_message"/>
 
     <ListView
         android:id="@+id/subjects_list_view"
