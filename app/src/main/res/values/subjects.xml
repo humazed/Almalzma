@@ -2,7 +2,7 @@
 <resources>
 
 
-    <string-array name="subjects_0_1">
+    <string-array name="subjects_0_0_1">
         <item>Math</item>
         <item>physics</item>
         <item>English</item>
@@ -10,7 +10,7 @@
         <item>subject</item>
     </string-array>
 
-    <string-array name="subjects_0_2">
+    <string-array name="subjects_0_0_2">
         <item> chemistry </item>
         <item>Math</item>
         <item>fekh</item>
