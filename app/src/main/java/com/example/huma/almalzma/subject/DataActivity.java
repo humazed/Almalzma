@@ -1,8 +1,8 @@
 package com.example.huma.almalzma.subject;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +17,7 @@ import com.example.huma.almalzma.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-public class DataActivity extends Activity {
+public class DataActivity extends AppCompatActivity {
 
 
     ListView mDataListView;

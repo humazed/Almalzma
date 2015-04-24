@@ -1,9 +1,9 @@
 package com.example.huma.almalzma;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +15,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText mNameEditText, mPasswordEditText;
     TextView mSignupTextView;
