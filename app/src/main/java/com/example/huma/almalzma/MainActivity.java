@@ -27,9 +27,11 @@ public class MainActivity extends ActionBarActivity {
     private ListView mSubjectsListView;
     private TextView mEmptyTextView;
 
-    protected ParseUser mCurrentUser;
-    String mGrade;
+    private FloatingActionButton mFab;
 
+    protected ParseUser mCurrentUser;
+
+    String mGrade;
     String[] mSubjects = {};
     private int mPreviousVisibleItem;
 
@@ -40,6 +42,7 @@ public class MainActivity extends ActionBarActivity {
 
         mSubjectsListView = (ListView) findViewById(R.id.subjects_list_view);
         mEmptyTextView = (TextView) findViewById(R.id.empty);
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
 
         mCurrentUser = ParseUser.getCurrentUser();
         if (mCurrentUser == null) {
@@ -74,8 +77,8 @@ public class MainActivity extends ActionBarActivity {
                     mSubjects = this.getResources().getStringArray(R.array.subjects_n_4_2);
                     break;
             }
-            mSubjectsListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mSubjects));
 
+            mSubjectsListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mSubjects));
             mSubjectsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -86,44 +89,46 @@ public class MainActivity extends ActionBarActivity {
         }
 
         //control the FloatingActionButton.
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.hide(false);
+        mFab.hide(false);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                fab.show(true);
-                fab.setShowAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.show_from_bottom));
-                fab.setHideAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.hide_to_bottom));
+                mFab.show(true);
+                mFab.setShowAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.show_from_bottom));
+                mFab.setHideAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.hide_to_bottom));
             }
         }, 300);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "OK!!!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        mSubjectsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (firstVisibleItem > mPreviousVisibleItem) {
-                    fab.hide(true);
-                } else if (firstVisibleItem < mPreviousVisibleItem) {
-                    fab.show(true);
-                }
-                mPreviousVisibleItem = firstVisibleItem;
-            }
-        });
+        //hide the button when scroll.
+        mSubjectsListView.setOnScrollListener(scrollListener);
 
         mSubjectsListView.setEmptyView(mEmptyTextView);
 
     }
 
+    //hide the button when scroll.
+    AbsListView.OnScrollListener scrollListener = new AbsListView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            if (firstVisibleItem > mPreviousVisibleItem) {
+                mFab.hide(true);
+            } else if (firstVisibleItem < mPreviousVisibleItem) {
+                mFab.show(true);
+            }
+            mPreviousVisibleItem = firstVisibleItem;
+        }
+    };
 
 
     @Override
