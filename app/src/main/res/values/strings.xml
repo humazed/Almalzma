@@ -81,5 +81,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_data">DataActivity</string>
     <string name="doctor_quotes">Doctor quotes</string>
+    <string name="unexpected_error">Sorry un expected error</string>
 
 </resources>

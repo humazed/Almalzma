@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 case "n_4_2": //4
                     mSubjects = this.getResources().getStringArray(R.array.subjects_n_4_2);
                     break;
+                default:
+                    mEmptyTextView.setText(getString(R.string.unexpected_error));
             }
 
             mSubjectsListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mSubjects));

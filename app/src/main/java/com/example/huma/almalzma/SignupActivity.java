@@ -28,7 +28,7 @@ public class SignupActivity extends AppCompatActivity {
     LoadingView mLoadingView;
 
     String mName, mEmail, mPassword, mPasswordConfirm;
-    String mDepartment = "0", mGrade;
+    String mDepartment = "x", mGrade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,11 @@ public class SignupActivity extends AppCompatActivity {
         mLoadingView = (LoadingView) findViewById(R.id.signup_loading_view);
 
 
+        /*the construct of grade which passed to parse.com is as following
+        * department_grade_  and then at main add the term
+        * so the full grade will be department_grade_term
+        * for prep I used "0"
+        * and for the rest of departments used the first letter of them.*/
         //Let the user choose his Department.
         mDepartmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -118,25 +123,23 @@ public class SignupActivity extends AppCompatActivity {
         mGradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!mDepartment.equals("0")) {
-                    switch (position) {
-                        case 0:
-                            mGrade = "1";
-                            break;
-                        case 1:
-                            mGrade = "2";
-                            break;
-                        case 2:
-                            mGrade = "3";
-                            break;
-                        case 3:
-                            mGrade = "4";
-                            break;
-                        default:
-                            mGrade = "0"; //prep.
-                            break;
-                    }
-                } else mGrade = "0";
+                switch (position) {
+                    case 0:
+                        mGrade = "1";
+                        break;
+                    case 1:
+                        mGrade = "2";
+                        break;
+                    case 2:
+                        mGrade = "3";
+                        break;
+                    case 3:
+                        mGrade = "4";
+                        break;
+                    default:
+                        mGrade = "0"; //prep.
+                        break;
+                }
             }
 
 
@@ -158,6 +161,7 @@ public class SignupActivity extends AppCompatActivity {
                 mEmail = mEmailEditText.getText().toString().trim();
                 mPassword = mPasswordEditText.getText().toString().trim();
                 mPasswordConfirm = mPasswordConfirmEditText.getText().toString().trim();
+                if (mDepartment.equals("0")) mGrade = "0";
 
                 //if user leave any thing empty show him AlertDialog.
                 if (mName.isEmpty() || mEmail.isEmpty() || mPassword.isEmpty()) {
