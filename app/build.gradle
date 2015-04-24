@@ -26,4 +26,5 @@ dependencies {
     compile fileTree(include: 'Parse-*.jar', dir: 'libs')
     compile project(':shapeloading')
     compile 'com.github.clans:fab:1.4.0'
+    compile 'com.afollestad:material-dialogs:0.7.2.7'
 }

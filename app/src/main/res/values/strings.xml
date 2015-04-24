@@ -83,4 +83,8 @@
     <string name="doctor_quotes">Doctor quotes</string>
     <string name="unexpected_error">Sorry un expected error</string>
 
+    <string name="doctor_quotes_dialog_input">Doctor quotes</string>
+    <string name="doctor_quotes_dialog_content">What did the doctor said?</string>
+    <string name="doctor_quotes_dialog_hint">the quotes</string>
+
 </resources>

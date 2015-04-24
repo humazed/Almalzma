@@ -1,11 +1,13 @@
 package com.example.huma.almalzma.parse;
 
-/**
- * Created by huma on 4/17/2015.
- */
 public final class ParseConstants {
 
-    //Fields names
+    //ParseObjects names.
+    public static final String OBJECT_LECTURES = "lectures";
+    public static final String OBJECT_SECTIONS = "sections";
+    public static final String OBJECT_ANNOUNCEMENTS = "announcements";
+
+    //Keys names.
     public static final String KEY_GRADE = "grade";
 
 }

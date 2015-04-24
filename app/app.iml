@@ -88,9 +88,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Parse-1.9.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.1.0" level="project" />
+    <orderEntry type="library" exported="" name="recyclerview-v7-22.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.1.0" level="project" />
     <orderEntry type="library" exported="" name="fab-1.4.0" level="project" />
+    <orderEntry type="library" exported="" name="material-dialogs-0.7.2.7" level="project" />
     <orderEntry type="library" exported="" name="bolts-android-1.2.0" level="project" />
     <orderEntry type="module" module-name="shapeloading" exported="" />
   </component>
