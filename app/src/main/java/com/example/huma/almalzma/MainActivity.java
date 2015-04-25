@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton mFab;
 
-    protected ParseUser mCurrentUser;
+    public static ParseUser mCurrentUser;
 
     String mGrade;
     String[] mSubjects = {};

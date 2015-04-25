@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_format_quote_white"
-            fab:fab_label="@string/doctor_quotes"
+            fab:fab_label="@string/doctor_quote"
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -52,5 +52,12 @@
             fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
+
+    <com.mingle.widget.LoadingView
+        android:id="@+id/announcements_frag_loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
 
 </FrameLayout>
