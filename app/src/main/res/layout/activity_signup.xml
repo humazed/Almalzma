@@ -10,6 +10,21 @@
 
 
     <EditText
+        android:id="@+id/name_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName">
+
+        <requestFocus />
+    </EditText>
+
+
+    <EditText
         android:id="@+id/email_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,10 +33,7 @@
         android:layout_below="@+id/name_signup"
         android:ems="10"
         android:hint="@string/email"
-        android:inputType="textEmailAddress">
-
-        <requestFocus />
-    </EditText>
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/password_signup"
@@ -44,64 +56,6 @@
         android:ems="10"
         android:hint="@string/password_confirm"
         android:inputType="textPassword" />
-
-    <Button
-        android:id="@+id/button_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/spinners_linearLayout"
-        android:layout_marginTop="61dp"
-        android:text="@string/signup" />
-
-    <EditText
-        android:id="@+id/name_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:ems="10"
-        android:hint="@string/name"
-        android:inputType="textPersonName" />
-
-    <com.mingle.widget.LoadingView
-        android:id="@+id/signup_loading_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
-
-    <LinearLayout
-        android:id="@+id/spinners_linearLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <Spinner
-            android:id="@+id/department_spinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:entries="@array/departments"
-            android:prompt="@string/department_select_message"
-            android:spinnerMode="dropdown" />
-
-        <Spinner
-            android:id="@+id/grade_spinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:entries="@array/grades"
-            android:prompt="@string/grade_select_message"
-            android:spinnerMode="dropdown"
-            android:visibility="invisible"/>
-
-    </LinearLayout>
 
 
     <LinearLayout
@@ -128,8 +82,53 @@
             android:layout_weight="5"
             android:text="@string/grade_select_message"
             android:visibility="invisible" />
-
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/spinners_linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/text_view_linearLayout"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <Spinner
+            android:id="@+id/department_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:entries="@array/departments"
+            android:prompt="@string/department_select_message"
+            android:spinnerMode="dropdown" />
+
+        <Spinner
+            android:id="@+id/grade_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:entries="@array/grades"
+            android:prompt="@string/grade_select_message"
+            android:spinnerMode="dropdown"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spinners_linearLayout"
+        android:layout_marginTop="40dp"
+        android:text="@string/signup" />
+
+
+    <com.mingle.widget.LoadingView
+        android:id="@+id/signup_loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </RelativeLayout>

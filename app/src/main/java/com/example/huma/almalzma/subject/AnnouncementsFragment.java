@@ -53,11 +53,16 @@ public class AnnouncementsFragment extends Fragment {
     private String mGrade;
     private String mAnnouncementName;
     private String[] mAnnouncements = {};
-    private String[] mWeeks;
 
 
     public AnnouncementsFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -66,6 +71,10 @@ public class AnnouncementsFragment extends Fragment {
 
         mLoadingView.setVisibility(View.VISIBLE);
 
+        //get the subject name to make a ParseObject with it.
+        Intent intent = getActivity().getIntent();
+        mSubjectName = intent.getStringExtra(Constants.KEY_SUBJECT_NAME);
+        mGrade = intent.getStringExtra(Constants.KET_GRADE);
         //ParseObject name. which con
         mAnnouncementName = mGrade + "_" + mSubjectName + "_" + ParseConstants.OBJECT_ANNOUNCEMENTS;
 
@@ -113,21 +122,12 @@ public class AnnouncementsFragment extends Fragment {
         mFab2 = (FloatingActionButton) view.findViewById(R.id.ann_fab2);
         mFab3 = (FloatingActionButton) view.findViewById(R.id.ann_fab3);
 
-        //get the subject name to make a ParseObject with it.
-        Intent intent = getActivity().getIntent();
-        mSubjectName = intent.getStringExtra(Constants.KEY_SUBJECT_NAME);
-        mGrade = intent.getStringExtra(Constants.KET_GRADE);
-
-        //dummy data to ListView.
-        mWeeks = getResources().getStringArray(R.array.weeks);
-
 
         mAnnouncementsListView.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, mAnnouncements));
         mAnnouncementsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //start DataActivity
-                startActivity(new Intent(getActivity(), DataActivity.class));
+                //TODO: add Dialog to let user edit or delete the Announcement it's owen.
             }
         });
         mAnnouncementsListView.setEmptyView(mEmptyTextView);
@@ -146,11 +146,9 @@ public class AnnouncementsFragment extends Fragment {
             }
         }, 300);
 
-
         mFab1.setOnClickListener(clickListener);
         mFab2.setOnClickListener(clickListener);
         mFab3.setOnClickListener(clickListener);
-
 
         // Inflate the layout for this fragment
         return view;
