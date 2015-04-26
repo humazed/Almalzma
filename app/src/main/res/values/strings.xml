@@ -3,12 +3,12 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_signup">SignupActivity</string>
-    <string name="title_activity_weeks">WeeksActivity</string>
-    <string name="title_activity_weed_details">WeedDetailsActivity</string>
-    <string name="title_activity_subject">SubjectActivity</string>
-    <string name="title_activity_data">DataActivity</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_signup">Signup</string>
+    <string name="title_activity_weeks">Weeks</string>
+    <string name="title_activity_weed_details">WeedDetails</string>
+    <string name="title_activity_subject">Subject</string>
+    <string name="title_activity_data">Data</string>
 
     <string name="email">Please enter your E-mail</string>
     <string name="name">Please enter your Name</string>
@@ -32,11 +32,18 @@
 
     <!-- FloatButtons labels-->
     <string name="doctor_quote">Doctor quote</string>
-
     <string name="doctor_quote_dialog_input">Doctor quote</string>
     <string name="doctor_quote_dialog_content">What did the doctor said?</string>
     <string name="doctor_quote_dialog_hint">the quote</string>
+
+    <string name="lecture_link">Lecture link</string>
+    <string name="lecture_link_dialog_input">Lecture link</string>
+    <string name="lecture_link_dialog_content">What is the lecture PDF link?</string>
+    <string name="lecture_link_dialog_hint">the link</string>
+
+
     <string name="add_success_message">Add success</string>
+
 
     <!--Empty and error messages-->
     <string name="coming_soon_message">Coming soon</string>
@@ -45,6 +52,8 @@
     <string name="connection_error">Please check your connection</string>
     <string name="error_title">Oooops…</string>
     <string name="signup_error_message">Please fill the empty fields</string>
+    <string name="label_lecture_link">Lecture Link</string>
+    <string name="label_section_link">Section Link</string>
 
 
     <string-array name="departments">

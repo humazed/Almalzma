@@ -71,16 +71,16 @@ public class AnnouncementsFragment extends Fragment {
 
         mLoadingView.setVisibility(View.VISIBLE);
 
-        //get the subject name to make a ParseObject with it.
+        //get the prefix of parse class.
         Intent intent = getActivity().getIntent();
         mSubjectName = intent.getStringExtra(Constants.KEY_SUBJECT_NAME);
         mGrade = intent.getStringExtra(Constants.KET_GRADE);
-        //ParseObject name. which con
+        //ParseObject name. which format grade_subjectName_section
         mAnnouncementName = mGrade + "_" + mSubjectName + "_" + ParseConstants.OBJECT_ANNOUNCEMENTS;
 
         //retrieve all the quotes.
         ParseQuery<ParseObject> announcementsQuery = ParseQuery.getQuery(mAnnouncementName);
-        announcementsQuery.addDescendingOrder(ParseConstants.KEY_CREATED_AR);
+        announcementsQuery.addDescendingOrder(ParseConstants.KEY_CREATED_AT);
         announcementsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {

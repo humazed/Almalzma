@@ -8,12 +8,13 @@ public final class ParseConstants {
     public static final String OBJECT_ANNOUNCEMENTS = "announcements";
 
     //Keys names.
-    public static final String KEY_CREATED_AR = "createdAt";
+    public static final String KEY_CREATED_AT = "createdAt";
     public static final String KEY_GRADE = "grade";
     public static final String KEY_CURRENT_USER = "currentUser";
     public static final String KEY_SUBJECT_NAME = "subject";
     public static final String KEY_QUOTE = "quote";
     public static final String KEY_TEXT = "text";
     public static final String KEY_TYPE = "type";
+    public static final String KEY_LINK = "lecture_link";
 
 }

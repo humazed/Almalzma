@@ -138,8 +138,7 @@ public class SubjectActivity extends AppCompatActivity implements ActionBar.TabL
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_subject, container, false);
             return rootView;
         }

@@ -1,8 +1,13 @@
 package com.example.huma.almalzma.subject;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,51 +17,116 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.huma.almalzma.Constants;
+import com.example.huma.almalzma.MainActivity;
 import com.example.huma.almalzma.R;
+import com.example.huma.almalzma.parse.ParseConstants;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.mingle.widget.LoadingView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.SaveCallback;
+
+import java.util.List;
 
 public class DataActivity extends AppCompatActivity {
 
 
     ListView mDataListView;
     TextView mEmptyTextView;
+    LoadingView mLoadingView;
 
     private FloatingActionMenu mFloatingActionMenu;
     private FloatingActionButton mFab1, mFab2, mFab3;
 
     private int mPreviousVisibleItem;
+    private String mLectureName;
+    private String[] mDataItems = {};
 
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        String from = intent.getStringExtra(Constants.KEY_FROM);
+        switch (from) {
+            case Constants.KEY_LECTURE_PREFIX:
+                mFab1.setLabelText(getString(R.string.label_lecture_link));
+                mLectureName = intent.getStringExtra(Constants.KEY_LECTURE_PREFIX);
+                break;
+            case Constants.KEY_SECTION_PREFIX:
+                mFab1.setLabelText(getString(R.string.label_section_link));
+                mLectureName = intent.getStringExtra(Constants.KEY_SECTION_PREFIX);
+                break;
+        }
+        Log.d("KEY_PREFIX: ", mLectureName);
+
+        //retrieve all the quotes.
+        ParseQuery<ParseObject> announcementsQuery = ParseQuery.getQuery(mLectureName);
+        announcementsQuery.addDescendingOrder(ParseConstants.KEY_CREATED_AT);
+        announcementsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                mLoadingView.setVisibility(View.INVISIBLE);
+                if (e == null) {
+                    //successful
+                    mDataItems = new String[list.size()];
+                    int i = 0;
+                    for (ParseObject dataItem : list) {
+                        mDataItems[i] = dataItem.getString(ParseConstants.KEY_LINK);
+                        i++;
+                    }
+                    mDataListView.setAdapter(new ArrayAdapter<>(DataActivity.this,
+                            android.R.layout.simple_list_item_1, mDataItems));
+                } else {
+                    //unsuccessful
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DataActivity.this);
+                    builder.setTitle(getString(R.string.error_title))
+                            .setMessage(R.string.connection_error)
+                            .setPositiveButton(android.R.string.ok, null)
+                            .create().show();
+                    Log.e("Error: ", e.getMessage());
+                }
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
-        String[] weeks = getResources().getStringArray(R.array.weeks);
-
         //findViewById
         mDataListView = (ListView) findViewById(R.id.data_list_view);
         mEmptyTextView = (TextView) findViewById(R.id.empty);
+        mLoadingView = (LoadingView) findViewById(R.id.data_loading_view);
 
         mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.data_float_menu);
         mFab1 = (FloatingActionButton) findViewById(R.id.data_fab1);
         mFab2 = (FloatingActionButton) findViewById(R.id.data_fab2);
         mFab3 = (FloatingActionButton) findViewById(R.id.data_fab3);
 
-        mDataListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, weeks));
         mDataListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO: view the data.
+                Uri uri = Uri.parse(mDataItems[position]);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
         mDataListView.setEmptyView(mEmptyTextView);
         mDataListView.setOnScrollListener(scrollListener);
 
         //control the FloatingActionMenu.
-//        mFloatingActionMenu.hideMenuButton(false);
+        mFloatingActionMenu.hideMenuButton(false);
         mFloatingActionMenu.setClosedOnTouchOutside(true);
 
         new Handler().postDelayed(new Runnable() {
@@ -82,7 +152,7 @@ public class DataActivity extends AppCompatActivity {
 
             switch (v.getId()) {
                 case R.id.data_fab1:
-
+                    showInputDialog();
                     break;
                 case R.id.data_fab2:
 
@@ -93,6 +163,48 @@ public class DataActivity extends AppCompatActivity {
             }
         }
 
+    };
+
+    private void showInputDialog() {
+        new MaterialDialog.Builder(this)
+                .title(R.string.lecture_link_dialog_input)
+                .content(R.string.lecture_link_dialog_content)
+                .inputType(InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_TEXT_VARIATION_PERSON_NAME |
+                        InputType.TYPE_TEXT_FLAG_CAP_WORDS)
+                .input(R.string.lecture_link_dialog_hint, 0, false, new MaterialDialog.InputCallback() {
+                    private String announcementName;
+
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        String link = input.toString();
+
+                        ParseObject announcementsParseObject = new ParseObject(mLectureName);
+                        announcementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_LINK);
+                        announcementsParseObject.put(ParseConstants.KEY_LINK, link);
+                        announcementsParseObject.put(ParseConstants.KEY_CURRENT_USER, MainActivity.mCurrentUser);
+                        announcementsParseObject.saveInBackground(saveCallback);
+                    }
+                }).show();
+    }
+
+    private SaveCallback saveCallback = new SaveCallback() {
+        @Override
+        public void done(ParseException e) {
+            if (e == null) {
+                //successful
+                Toast.makeText(DataActivity.this, getString(R.string.add_success_message), Toast.LENGTH_LONG).show();
+                onResume();
+            } else {
+                //unsuccessful show the user AlertDialog.
+                AlertDialog.Builder builder = new AlertDialog.Builder(DataActivity.this);
+                builder.setTitle(getString(R.string.error_title))
+                        .setMessage(R.string.connection_error)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .create().show();
+                Log.e("Error: ", e.getMessage());
+            }
+        }
     };
 
     //hide the button when scroll.

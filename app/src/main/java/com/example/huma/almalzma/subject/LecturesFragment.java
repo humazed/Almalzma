@@ -16,7 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huma.almalzma.Constants;
 import com.example.huma.almalzma.R;
+import com.example.huma.almalzma.parse.ParseConstants;
 import com.github.clans.fab.FloatingActionButton;
 
 //import android.support.v4.app.Fragment;
@@ -29,22 +31,35 @@ public class LecturesFragment extends Fragment {
 
     ListView mLecturesListView;
     TextView mEmptyTextView;
-
     private FloatingActionButton mFab;
 
     private int mPreviousVisibleItem;
+
+    private String mLectureName;
 
 
     public LecturesFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //get the subject name to make a ParseObject with it.
+        Intent intent = getActivity().getIntent();
+        String mSubjectName = intent.getStringExtra(Constants.KEY_SUBJECT_NAME);
+        String mGrade = intent.getStringExtra(Constants.KET_GRADE);
+        //ParseObject name. which format grade_subjectName_section
+        mLectureName = mGrade + "_" + mSubjectName + "_" + ParseConstants.OBJECT_LECTURES + "_";
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lectures, container, false);
 
-        String[] weeks = getResources().getStringArray(R.array.weeks);
+        final String[] weeks = getResources().getStringArray(R.array.weeks);
 
         //findViewById
         mLecturesListView = (ListView) view.findViewById(R.id.lectures_frag_list_view);
@@ -56,8 +71,12 @@ public class LecturesFragment extends Fragment {
         mLecturesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String week = weeks[position].replaceAll("\\s+", "");
                 //start DataActivity
-                startActivity(new Intent(getActivity(), DataActivity.class));
+                Intent intent = new Intent(getActivity(), DataActivity.class);
+                intent.putExtra(Constants.KEY_LECTURE_PREFIX, mLectureName + week);
+                intent.putExtra(Constants.KEY_FROM, Constants.KEY_LECTURE_PREFIX);
+                startActivity(intent);
             }
         });
         mLecturesListView.setEmptyView(mEmptyTextView);

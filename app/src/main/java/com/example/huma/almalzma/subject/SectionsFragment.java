@@ -16,7 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huma.almalzma.Constants;
 import com.example.huma.almalzma.R;
+import com.example.huma.almalzma.parse.ParseConstants;
 import com.github.clans.fab.FloatingActionButton;
 
 
@@ -31,10 +33,23 @@ public class SectionsFragment extends Fragment {
     private FloatingActionButton mFab;
 
     private int mPreviousVisibleItem;
+    private String mSectionName;
 
 
     public SectionsFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //get the subject name to make a ParseObject with it.
+        Intent intent = getActivity().getIntent();
+        String mSubjectName = intent.getStringExtra(Constants.KEY_SUBJECT_NAME);
+        String mGrade = intent.getStringExtra(Constants.KET_GRADE);
+        //ParseObject name. which format grade_subjectName_section
+        mSectionName = mGrade + "_" + mSubjectName + "_" + ParseConstants.OBJECT_SECTIONS + "_";
     }
 
 
@@ -42,7 +57,7 @@ public class SectionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sections, container, false);
 
-        String[] weeks = getResources().getStringArray(R.array.weeks);
+        final String[] weeks = getResources().getStringArray(R.array.weeks);
 
         mSectionsListView = (ListView) view.findViewById(R.id.sections_frag_list_view);
         mEmptyTextView = (TextView) view.findViewById(R.id.empty);
@@ -54,7 +69,12 @@ public class SectionsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //start DataActivity
-                startActivity(new Intent(getActivity(), DataActivity.class));
+                String week = weeks[position].replaceAll("\\s+", "");
+                //start DataActivity
+                Intent intent = new Intent(getActivity(), DataActivity.class);
+                intent.putExtra(Constants.KEY_SECTION_PREFIX, mSectionName + week);
+                intent.putExtra(Constants.KEY_FROM, Constants.KEY_SECTION_PREFIX);
+                startActivity(intent);
             }
         });
         mSectionsListView.setEmptyView(mEmptyTextView);
