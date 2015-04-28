@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 //if user leave any thing empty show him AlertDialog.
                 if (mName.isEmpty() || mPassword.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setTitle(getString(R.string.error_title))
+                    builder.setTitle(getString(R.string.generic_error_title))
                             .setMessage(R.string.signup_error_message)
                             .setPositiveButton(android.R.string.ok, null)
                             .create().show();
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 // Sign up didn't succeed. Look at the ParseException to figure out what went wrong
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                builder.setTitle(getString(R.string.error_title))
+                                builder.setTitle(getString(R.string.generic_error_title))
                                         .setMessage(e.getMessage())
                                         .setPositiveButton(android.R.string.ok, null)
                                         .create().show();

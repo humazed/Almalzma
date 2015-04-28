@@ -98,7 +98,7 @@ public class AnnouncementsFragment extends Fragment {
                 } else {
                     //unsuccessful
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(getString(R.string.error_title))
+                    builder.setTitle(getString(R.string.generic_error_title))
                             .setMessage(R.string.connection_error)
                             .setPositiveButton(android.R.string.ok, null)
                             .create().show();
@@ -205,7 +205,7 @@ public class AnnouncementsFragment extends Fragment {
             } else {
                 //unsuccessful show the user AlertDialog.
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(getString(R.string.error_title))
+                builder.setTitle(getString(R.string.generic_error_title))
                         .setMessage(R.string.connection_error)
                         .setPositiveButton(android.R.string.ok, null)
                         .create().show();

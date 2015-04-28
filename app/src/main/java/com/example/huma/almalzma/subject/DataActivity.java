@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,7 +51,6 @@ public class DataActivity extends AppCompatActivity {
     private String[] mDataItems = {};
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -88,7 +88,7 @@ public class DataActivity extends AppCompatActivity {
                 } else {
                     //unsuccessful
                     AlertDialog.Builder builder = new AlertDialog.Builder(DataActivity.this);
-                    builder.setTitle(getString(R.string.error_title))
+                    builder.setTitle(getString(R.string.generic_error_title))
                             .setMessage(R.string.connection_error)
                             .setPositiveButton(android.R.string.ok, null)
                             .create().show();
@@ -178,14 +178,34 @@ public class DataActivity extends AppCompatActivity {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         String link = input.toString();
+                        if (checkLink(link) != null) {
+                            link = checkLink(link);
 
-                        ParseObject announcementsParseObject = new ParseObject(mLectureName);
-                        announcementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_LINK);
-                        announcementsParseObject.put(ParseConstants.KEY_LINK, link);
-                        announcementsParseObject.put(ParseConstants.KEY_CURRENT_USER, MainActivity.mCurrentUser);
-                        announcementsParseObject.saveInBackground(saveCallback);
+                            ParseObject announcementsParseObject = new ParseObject(mLectureName);
+                            announcementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_LINK);
+                            announcementsParseObject.put(ParseConstants.KEY_LINK, link);
+                            announcementsParseObject.put(ParseConstants.KEY_CURRENT_USER, MainActivity.mCurrentUser);
+                            announcementsParseObject.saveInBackground(saveCallback);
+                        }
                     }
                 }).show();
+    }
+
+    //make sure the user has enter wright Uri >> and add http:// to it if it don't.
+    private String checkLink(String link) {
+        if (Patterns.WEB_URL.matcher(link).matches()) {
+            if (!link.startsWith("http://") && !link.startsWith("https://"))
+                link = "http://" + link;
+            return link;
+
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.wrong_uri_error_title))
+                    .setMessage(R.string.wrong_uri_error_message)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .create().show();
+        }
+        return null;
     }
 
     private SaveCallback saveCallback = new SaveCallback() {
@@ -198,7 +218,7 @@ public class DataActivity extends AppCompatActivity {
             } else {
                 //unsuccessful show the user AlertDialog.
                 AlertDialog.Builder builder = new AlertDialog.Builder(DataActivity.this);
-                builder.setTitle(getString(R.string.error_title))
+                builder.setTitle(getString(R.string.generic_error_title))
                         .setMessage(R.string.connection_error)
                         .setPositiveButton(android.R.string.ok, null)
                         .create().show();

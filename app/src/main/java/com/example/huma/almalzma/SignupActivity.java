@@ -112,7 +112,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
-                builder.setTitle(getString(R.string.error_title))
+                builder.setTitle(getString(R.string.generic_error_title))
                         .setMessage(R.string.department_select_message)
                         .setPositiveButton(android.R.string.ok, null)
                         .create().show();
@@ -146,7 +146,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
-                builder.setTitle(getString(R.string.error_title))
+                builder.setTitle(getString(R.string.generic_error_title))
                         .setMessage(R.string.grade_select_message)
                         .setPositiveButton(android.R.string.ok, null)
                         .create().show();
@@ -166,7 +166,7 @@ public class SignupActivity extends AppCompatActivity {
                 //if user leave any thing empty show him AlertDialog.
                 if (mName.isEmpty() || mEmail.isEmpty() || mPassword.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
-                    builder.setTitle(getString(R.string.error_title))
+                    builder.setTitle(getString(R.string.generic_error_title))
                             .setMessage(R.string.signup_error_message)
                             .setPositiveButton(android.R.string.ok, null)
                             .create().show();
@@ -197,7 +197,7 @@ public class SignupActivity extends AppCompatActivity {
                                 } else {
                                     // Sign up didn't succeed. Look at the ParseException to figure out what went wrong.
                                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
-                                    builder.setTitle(getString(R.string.error_title))
+                                    builder.setTitle(getString(R.string.generic_error_title))
                                             .setMessage(e.getMessage())
                                             .setPositiveButton(android.R.string.ok, null)
                                             .create().show();
@@ -207,7 +207,7 @@ public class SignupActivity extends AppCompatActivity {
                     } else {
                         //password not matching >> show the user AlertDialog.
                         AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
-                        builder.setTitle(getString(R.string.error_title))
+                        builder.setTitle(getString(R.string.generic_error_title))
                                 .setMessage(getString(R.string.password_not_match_error_message))
                                 .setPositiveButton(android.R.string.ok, null)
                                 .create().show();
