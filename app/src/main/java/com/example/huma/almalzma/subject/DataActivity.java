@@ -34,14 +34,15 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
+import java.io.File;
 import java.util.List;
 
-public class DataActivity extends AppCompatActivity {
+public class DataActivity extends AppCompatActivity implements FolderSelectorDialog.FolderSelectCallback {
 
 
-    ListView mDataListView;
-    TextView mEmptyTextView;
-    LoadingView mLoadingView;
+    private ListView mDataListView;
+    private TextView mEmptyTextView;
+    private LoadingView mLoadingView;
 
     private FloatingActionMenu mFloatingActionMenu;
     private FloatingActionButton mFab1, mFab2, mFab3;
@@ -59,14 +60,18 @@ public class DataActivity extends AppCompatActivity {
         switch (from) {
             case Constants.KEY_LECTURE_PREFIX:
                 mFab1.setLabelText(getString(R.string.label_lecture_link));
+                mFab2.setLabelText(getString(R.string.label_lecture_pdf_file));
+                mEmptyTextView.setText(R.string.no_lectures_message);
                 mLectureName = intent.getStringExtra(Constants.KEY_LECTURE_PREFIX);
                 break;
             case Constants.KEY_SECTION_PREFIX:
                 mFab1.setLabelText(getString(R.string.label_section_link));
+                mFab2.setLabelText(getString(R.string.label_section_pdf_file));
+                mEmptyTextView.setText(R.string.no_sections_message);
                 mLectureName = intent.getStringExtra(Constants.KEY_SECTION_PREFIX);
                 break;
         }
-        Log.d("KEY_PREFIX: ", mLectureName);
+        Log.d("KEY_PREFIX-DataActivity", mLectureName);
 
         //retrieve all the quotes.
         ParseQuery<ParseObject> announcementsQuery = ParseQuery.getQuery(mLectureName);
@@ -97,6 +102,7 @@ public class DataActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +161,7 @@ public class DataActivity extends AppCompatActivity {
                     showInputDialog();
                     break;
                 case R.id.data_fab2:
+                    new FolderSelectorDialog().show(DataActivity.this);
 
                     break;
                 case R.id.data_fab3:
@@ -178,8 +185,8 @@ public class DataActivity extends AppCompatActivity {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         String link = input.toString();
-                        if (checkLink(link) != null) {
-                            link = checkLink(link);
+                        if (validateLink(link) != null) {
+                            link = validateLink(link);
 
                             ParseObject announcementsParseObject = new ParseObject(mLectureName);
                             announcementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_LINK);
@@ -191,8 +198,13 @@ public class DataActivity extends AppCompatActivity {
                 }).show();
     }
 
+    @Override
+    public void onFolderSelection(File folder) {
+        Toast.makeText(this, folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
+    }
+
     //make sure the user has enter wright Uri >> and add http:// to it if it don't.
-    private String checkLink(String link) {
+    private String validateLink(String link) {
         if (Patterns.WEB_URL.matcher(link).matches()) {
             if (!link.startsWith("http://") && !link.startsWith("https://"))
                 link = "http://" + link;
@@ -227,6 +239,7 @@ public class DataActivity extends AppCompatActivity {
         }
     };
 
+
     //hide the button when scroll.
     AbsListView.OnScrollListener scrollListener = new AbsListView.OnScrollListener() {
         @Override
@@ -243,7 +256,6 @@ public class DataActivity extends AppCompatActivity {
             mPreviousVisibleItem = firstVisibleItem;
         }
     };
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

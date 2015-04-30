@@ -30,16 +30,25 @@
     <string name="title_section2">Sections</string>
     <string name="title_section3">Announcements</string>
 
-    <!-- FloatButtons labels-->
+    <!-- FloatButtons labels and Dialogs-->
     <string name="doctor_quote">Doctor quote</string>
     <string name="doctor_quote_dialog_input">Doctor quote</string>
     <string name="doctor_quote_dialog_content">What did the doctor said?</string>
     <string name="doctor_quote_dialog_hint">the quote</string>
 
+    <string name="label_lecture_link">Lecture Link</string>
     <string name="lecture_link">Lecture link</string>
     <string name="lecture_link_dialog_input">Lecture link</string>
     <string name="lecture_link_dialog_content">What is the lecture PDF link?</string>
     <string name="lecture_link_dialog_hint">the link</string>
+
+    <string name="label_section_link">Section Link</string>
+
+    <string name="choose">CHOOSE</string>
+    <string name="label_lecture_pdf_file">Lecture PDF file</string>
+
+    <string name="label_section_pdf_file">Section PDF file</string>
+
 
 
     <string name="add_success_message">Add success</string>
@@ -47,6 +56,9 @@
 
     <!--Empty and error messages-->
     <string name="coming_soon_message">Coming soon</string>
+    <string name="no_announcements_message">No announcements</string>
+    <string name="no_lectures_message">No lectures</string>
+    <string name="no_sections_message">No sections</string>
     <string name="loading">Loading…</string>
     <string name="unexpected_error">Sorry un expected error</string>
     <string name="connection_error">Please check your connection</string>
@@ -54,10 +66,6 @@
     <string name="signup_error_message">Please fill the empty fields</string>
     <string name="wrong_uri_error_title">Oooops…</string>
     <string name="wrong_uri_error_message">Wrong link please make sure you enter correct link.</string>
-
-
-    <string name="label_lecture_link">Lecture Link</string>
-    <string name="label_section_link">Section Link</string>
 
 
     <string-array name="departments">
@@ -106,6 +114,5 @@
         <item>week 24</item>
         <item>week 25</item>
     </string-array>
-
 
 </resources>

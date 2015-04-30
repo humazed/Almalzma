@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
 
                     //pass the subject name and Grade to the SubjectActivity to use it making ParseObject.
                     Intent intent = new Intent(MainActivity.this, SubjectActivity.class);
-                    intent.putExtra(Constants.KEY_SUBJECT_NAME, mSubjects[position]);
                     intent.putExtra(Constants.KET_GRADE, mGrade);
+                    intent.putExtra(Constants.KEY_SUBJECT_NAME, mSubjects[position]);
                     startActivity(intent);
                 }
             });

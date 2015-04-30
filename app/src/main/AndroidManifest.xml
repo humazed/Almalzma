@@ -40,10 +40,10 @@
         <activity
             android:name=".subject.DataActivity"
             android:label="@string/title_activity_data"
-            android:parentActivityName=".subject.SubjectActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.huma.almalzma.subject.SubjectActivity" />
+            >
+        <!--<meta-data-->
+        <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="com.example.huma.almalzma.subject.SubjectActivity" />-->
         </activity>
     </application>
 

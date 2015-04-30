@@ -9,7 +9,7 @@
         android:id="@+id/empty"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/coming_soon_message" />
+        android:text="@string/no_announcements_message" />
 
     <ListView
         android:id="@+id/announcements_frag_list_view"
