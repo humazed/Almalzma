@@ -13,8 +13,13 @@ public final class ParseConstants {
     public static final String KEY_CURRENT_USER = "currentUser";
     public static final String KEY_SUBJECT_NAME = "subject";
     public static final String KEY_QUOTE = "quote";
-    public static final String KEY_TEXT = "text";
+    public static final String KEY_QUOTE_TEXT = "text";
     public static final String KEY_TYPE = "type";
-    public static final String KEY_LINK = "lecture_link";
+    public static final String KEY_LECTURE_LINK = "lecture_link";
+
+    public static final String KEY_ANNOUNCEMENT_IMPORTANT_LINK = "announcement_important_link";
+    public static final String KEY_ANNOUNCEMENT_IMPORTANT_LINK_DESCRIPTION = "announcement_important_link_description";
+
+
 
 }

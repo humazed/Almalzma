@@ -85,7 +85,7 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
                     mDataItems = new String[list.size()];
                     int i = 0;
                     for (ParseObject dataItem : list) {
-                        mDataItems[i] = dataItem.getString(ParseConstants.KEY_LINK);
+                        mDataItems[i] = dataItem.getString(ParseConstants.KEY_LECTURE_LINK);
                         i++;
                     }
                     mDataListView.setAdapter(new ArrayAdapter<>(DataActivity.this,
@@ -189,8 +189,8 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
                             link = validateLink(link);
 
                             ParseObject announcementsParseObject = new ParseObject(mLectureName);
-                            announcementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_LINK);
-                            announcementsParseObject.put(ParseConstants.KEY_LINK, link);
+                            announcementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_LECTURE_LINK);
+                            announcementsParseObject.put(ParseConstants.KEY_LECTURE_LINK, link);
                             announcementsParseObject.put(ParseConstants.KEY_CURRENT_USER, MainActivity.mCurrentUser);
                             announcementsParseObject.saveInBackground(saveCallback);
                         }

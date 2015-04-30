@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         else {
             //get the user grade to show him the right subjects.
             mGrade = mCurrentUser.getString(ParseConstants.KEY_GRADE);
+            //2 for the second term
+            //TODO: replace it with dynamic code that know the current term using the data.
             mGrade += "2";
 
             Toast.makeText(this, mGrade, Toast.LENGTH_SHORT).show();

@@ -32,15 +32,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_format_quote_white"
-            fab:fab_label="@string/doctor_quote"
+            fab:fab_label="@string/label_doctor_quote"
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/ann_fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit"
-            fab:fab_label="Menu item 2"
+            android:src="@drawable/ic_insert_link_white"
+            fab:fab_label="@string/label_important_link"
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton

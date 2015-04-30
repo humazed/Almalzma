@@ -31,10 +31,18 @@
     <string name="title_section3">Announcements</string>
 
     <!-- FloatButtons labels and Dialogs-->
-    <string name="doctor_quote">Doctor quote</string>
+    <string name="label_doctor_quote">Doctor quote</string>
     <string name="doctor_quote_dialog_input">Doctor quote</string>
     <string name="doctor_quote_dialog_content">What did the doctor said?</string>
     <string name="doctor_quote_dialog_hint">the quote</string>
+
+    <string name="label_important_link">important Link</string>
+    <string name="important_link">Important link</string>
+    <string name="important_link_dialog_input">Important link</string>
+    <string name="important_link_dialog_hint">The link</string>
+    <string name="description">The description</string>
+    <string name="add">ADD</string>
+
 
     <string name="label_lecture_link">Lecture Link</string>
     <string name="lecture_link">Lecture link</string>
@@ -45,10 +53,10 @@
     <string name="label_section_link">Section Link</string>
 
     <string name="choose">CHOOSE</string>
+
     <string name="label_lecture_pdf_file">Lecture PDF file</string>
 
     <string name="label_section_pdf_file">Section PDF file</string>
-
 
 
     <string name="add_success_message">Add success</string>
