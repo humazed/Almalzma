@@ -8,7 +8,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +23,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.huma.almalzma.Constants;
 import com.example.huma.almalzma.MainActivity;
 import com.example.huma.almalzma.R;
+import com.example.huma.almalzma.Utility;
 import com.example.huma.almalzma.parse.ParseConstants;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -185,8 +185,8 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         String link = input.toString();
-                        if (validateLink(link) != null) {
-                            link = validateLink(link);
+                        if (Utility.validateLinkWithAlerDailog(link, DataActivity.this) != null) {
+                            link = Utility.validateLinkWithAlerDailog(link, DataActivity.this);
 
                             ParseObject announcementsParseObject = new ParseObject(mLectureName);
                             announcementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_LECTURE_LINK);
@@ -203,22 +203,22 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
         Toast.makeText(this, folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
     }
 
-    //make sure the user has enter wright Uri >> and add http:// to it if it don't.
-    private String validateLink(String link) {
-        if (Patterns.WEB_URL.matcher(link).matches()) {
-            if (!link.startsWith("http://") && !link.startsWith("https://"))
-                link = "http://" + link;
-            return link;
-
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.wrong_uri_error_title))
-                    .setMessage(R.string.wrong_uri_error_message)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .create().show();
-        }
-        return null;
-    }
+//    //make sure the user has enter wright Uri >> and add http:// to it if it don't.
+//    private String validateLinkWithAlerDailog(String link) {
+//        if (Patterns.WEB_URL.matcher(link).matches()) {
+//            if (!link.startsWith("http://") && !link.startsWith("https://"))
+//                link = "http://" + link;
+//            return link;
+//
+//        } else {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle(getString(R.string.wrong_uri_error_title))
+//                    .setMessage(R.string.wrong_uri_error_message)
+//                    .setPositiveButton(android.R.string.ok, null)
+//                    .create().show();
+//        }
+//        return null;
+//    }
 
     private SaveCallback saveCallback = new SaveCallback() {
         @Override

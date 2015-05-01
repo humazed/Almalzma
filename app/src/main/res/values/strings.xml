@@ -74,6 +74,8 @@
     <string name="signup_error_message">Please fill the empty fields</string>
     <string name="wrong_uri_error_title">Oooops…</string>
     <string name="wrong_uri_error_message">Wrong link please make sure you enter correct link.</string>
+    <string name="wrong_link_error_message">Wrong Link</string>
+    <string name="link_helper_text">Enter the Link</string>
 
 
     <string-array name="departments">

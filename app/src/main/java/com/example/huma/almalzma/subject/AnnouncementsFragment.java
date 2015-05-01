@@ -1,6 +1,5 @@
 package com.example.huma.almalzma.subject;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +25,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.huma.almalzma.Constants;
 import com.example.huma.almalzma.MainActivity;
 import com.example.huma.almalzma.R;
+import com.example.huma.almalzma.Utility;
 import com.example.huma.almalzma.parse.ParseConstants;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -62,6 +62,7 @@ public class AnnouncementsFragment extends Fragment {
     private String mAnnouncementName;
     private String[] mAnnouncements = {};
     private ParseObject mAnnouncementsParseObject;
+    private String mLink;
 
 
     public AnnouncementsFragment() {
@@ -103,7 +104,7 @@ public class AnnouncementsFragment extends Fragment {
                                         .getString(ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK_DESCRIPTION);
                                 break;
                         }
-                        i++; 
+                        i++;
                     }
                     mAnnouncementsListView.setAdapter(new ArrayAdapter<>(getActivity(),
                             android.R.layout.simple_list_item_1, mAnnouncements));
@@ -220,10 +221,11 @@ public class AnnouncementsFragment extends Fragment {
                     public void onPositive(MaterialDialog dialog) {
                         //save link and description to parse.
                         mAnnouncementsParseObject = new ParseObject(mAnnouncementName);
-                        String link = mLinkEditText.getText().toString();
+                        mLink = mLinkEditText.getText().toString();
+                        mLink = Utility.validateLink(mLink);
                         String description = mDescriptionEditText.getText().toString();
                         mAnnouncementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK);
-                        mAnnouncementsParseObject.put(ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK, link);
+                        mAnnouncementsParseObject.put(ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK, mLink);
                         mAnnouncementsParseObject.put(ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK_DESCRIPTION, description);
                         mAnnouncementsParseObject.put(ParseConstants.KEY_CURRENT_USER, MainActivity.mCurrentUser);
                         mAnnouncementsParseObject.saveInBackground(saveCallback);
@@ -246,15 +248,28 @@ public class AnnouncementsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                linkFlag = (s.toString().trim().length() > 0);
+                //check the link.
+                if (Utility.validateLink(mLinkEditText.getText().toString()) == null) {
+                    linkFlag = false;
+                    mLinkEditText.setError(getActivity().getString(R.string.wrong_link_error_message));
+                } else {
+                    linkFlag = true;
+                    mLinkEditText.setError(null);
+                }
+
+                //check if the link is correct and there is description.
                 if (linkFlag && descriptionFlag) positiveAction.setEnabled(true);
                 else positiveAction.setEnabled(false);
+
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
             }
+
         });
+
         mDescriptionEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -262,7 +277,9 @@ public class AnnouncementsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //check if the text field is Empty or not.
                 descriptionFlag = (s.toString().trim().length() > 0);
+                //check if the link is correct and there is description.
                 if (linkFlag && descriptionFlag) positiveAction.setEnabled(true);
                 else positiveAction.setEnabled(false);
             }
