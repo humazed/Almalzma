@@ -17,8 +17,8 @@ public final class ParseConstants {
     public static final String KEY_TYPE = "type";
     public static final String KEY_LECTURE_LINK = "lecture_link";
 
-    public static final String KEY_ANNOUNCEMENT_IMPORTANT_LINK = "announcement_important_link";
-    public static final String KEY_ANNOUNCEMENT_IMPORTANT_LINK_DESCRIPTION = "announcement_important_link_description";
+    public static final String KEY_IMPORTANT_LINK = "important_link";
+    public static final String KEY_IMPORTANT_LINK_DESCRIPTION = "important_link_description";
 
 
 

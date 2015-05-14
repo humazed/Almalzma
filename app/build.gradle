@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.example.huma.almalzma"
+        applicationId "com.huma.almalzma"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
@@ -25,8 +25,8 @@ dependencies {
     compile 'com.parse.bolts:bolts-android:1.2.0'
     compile fileTree(include: 'Parse-*.jar', dir: 'libs')
     compile project(':shapeloading')
-    compile 'com.github.clans:fab:1.4.0'
-    compile 'com.afollestad:material-dialogs:0.7.3.1'
+    compile 'com.github.clans:fab:1.5.0'
+    compile 'com.afollestad:material-dialogs:0.7.4.1'
     compile 'com.ogaclejapan.smarttablayout:library:1.1.2@aar'
     compile 'com.ogaclejapan.smarttablayout:utils-v4:1.1.2@aar'
     compile 'com.github.rey5137:material:1.1.0'

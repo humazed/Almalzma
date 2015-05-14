@@ -56,13 +56,13 @@ public class AnnouncementsFragment extends Fragment {
     private EditText mLinkEditText;
     private EditText mDescriptionEditText;
 
-    private int mPreviousVisibleItem;
     private String mSubjectName;
     private String mGrade;
     private String mAnnouncementName;
     private String[] mAnnouncements = {};
     private ParseObject mAnnouncementsParseObject;
     private String mLink;
+    private List<ParseObject> mAnnouncementsObjects;
 
 
     public AnnouncementsFragment() {
@@ -89,6 +89,7 @@ public class AnnouncementsFragment extends Fragment {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 mLoadingView.setVisibility(View.INVISIBLE);
+                mAnnouncementsObjects = list;
                 if (e == null) {
                     //successful
                     mAnnouncements = new String[list.size()];
@@ -97,11 +98,12 @@ public class AnnouncementsFragment extends Fragment {
                         String s = announcement.getString(ParseConstants.KEY_TYPE);
                         switch (s) {
                             case ParseConstants.KEY_QUOTE:
-                                mAnnouncements[i] = announcement.getString(ParseConstants.KEY_QUOTE_TEXT);
-                                break;
-                            case ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK:
                                 mAnnouncements[i] = announcement
-                                        .getString(ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK_DESCRIPTION);
+                                        .getString(ParseConstants.KEY_QUOTE_TEXT);
+                                break;
+                            case ParseConstants.KEY_IMPORTANT_LINK:
+                                mAnnouncements[i] = announcement
+                                        .getString(ParseConstants.KEY_IMPORTANT_LINK_DESCRIPTION);
                                 break;
                         }
                         i++;
@@ -139,8 +141,14 @@ public class AnnouncementsFragment extends Fragment {
         mAnnouncementsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //if type is important_link open the link.
+            }
+        });
+        mAnnouncementsListView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
                 //TODO: add Dialog to let user edit or delete the Announcement it's owen.
-//                switch ()
+                return false;
             }
         });
         mAnnouncementsListView.setEmptyView(mEmptyTextView);
@@ -224,9 +232,9 @@ public class AnnouncementsFragment extends Fragment {
                         mLink = mLinkEditText.getText().toString();
                         mLink = Utility.validateLink(mLink);
                         String description = mDescriptionEditText.getText().toString();
-                        mAnnouncementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK);
-                        mAnnouncementsParseObject.put(ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK, mLink);
-                        mAnnouncementsParseObject.put(ParseConstants.KEY_ANNOUNCEMENT_IMPORTANT_LINK_DESCRIPTION, description);
+                        mAnnouncementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_IMPORTANT_LINK);
+                        mAnnouncementsParseObject.put(ParseConstants.KEY_IMPORTANT_LINK, mLink);
+                        mAnnouncementsParseObject.put(ParseConstants.KEY_IMPORTANT_LINK_DESCRIPTION, description);
                         mAnnouncementsParseObject.put(ParseConstants.KEY_CURRENT_USER, MainActivity.mCurrentUser);
                         mAnnouncementsParseObject.saveInBackground(saveCallback);
                     }
@@ -313,6 +321,7 @@ public class AnnouncementsFragment extends Fragment {
     };
 
     //hide the button when scroll.
+    private int previousVisibleItem;
     AbsListView.OnScrollListener scrollListener = new AbsListView.OnScrollListener() {
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -320,12 +329,12 @@ public class AnnouncementsFragment extends Fragment {
 
         @Override
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            if (firstVisibleItem > mPreviousVisibleItem) {
+            if (firstVisibleItem > previousVisibleItem) {
                 mFloatingActionMenu.hideMenuButton(true);
-            } else if (firstVisibleItem < mPreviousVisibleItem) {
+            } else if (firstVisibleItem < previousVisibleItem) {
                 mFloatingActionMenu.showMenuButton(true);
             }
-            mPreviousVisibleItem = firstVisibleItem;
+            previousVisibleItem = firstVisibleItem;
         }
     };
 }
