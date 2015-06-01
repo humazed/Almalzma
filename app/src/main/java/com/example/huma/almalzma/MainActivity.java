@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,11 +61,12 @@ public class MainActivity extends AppCompatActivity {
             mGrade += "2";
 
             Toast.makeText(this, mGrade, Toast.LENGTH_SHORT).show();
+            Log.d("Grade: ", mGrade);
 
             //switch the user grade to show him the right subjects.
             switch (mGrade) {
-                case "0_0_2": //prep
-                    mSubjects = this.getResources().getStringArray(R.array.subjects_0_0_2);
+                case "p0_1_2": //prep
+                    mSubjects = this.getResources().getStringArray(R.array.subjects_p0_1_2);
                     break;
                 case "n_1_2": //1
                     mSubjects = this.getResources().getStringArray(R.array.subjects_n_1_2);

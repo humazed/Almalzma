@@ -185,8 +185,8 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         String link = input.toString();
-                        if (Utility.validateLinkWithAlerDailog(link, DataActivity.this) != null) {
-                            link = Utility.validateLinkWithAlerDailog(link, DataActivity.this);
+                        if (Utility.validateLinkWithAlderDialog(link, DataActivity.this) != null) {
+                            link = Utility.validateLinkWithAlderDialog(link, DataActivity.this);
 
                             ParseObject announcementsParseObject = new ParseObject(mLectureName);
                             announcementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_LECTURE_LINK);

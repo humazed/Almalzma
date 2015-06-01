@@ -58,7 +58,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        mDepartment = "0"; //prep
+                        mDepartment = "p0"; //prep
                         mGradeSpinner.setVisibility(View.INVISIBLE);
                         mGradeTextView.setVisibility(View.INVISIBLE);
                         break;
@@ -137,7 +137,7 @@ public class SignupActivity extends AppCompatActivity {
                         mGrade = "4";
                         break;
                     default:
-                        mGrade = "0"; //prep.
+                        mGrade = "0"; //error.
                         break;
                 }
             }
@@ -153,7 +153,6 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        //Start Signup proses.
         mSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

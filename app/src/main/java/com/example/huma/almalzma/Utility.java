@@ -4,13 +4,11 @@ import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.util.Patterns;
 
-/**
- * Created by huma on 4/30/2015.
- */
+
 public class Utility {
 
     //make sure the user has enter wright Uri >> and add http:// to it if it don't.
-    public static String validateLinkWithAlerDailog(String link, Context context) {
+    public static String validateLinkWithAlderDialog(String link, Context context) {
         if (Patterns.WEB_URL.matcher(link).matches()) {
             if (!link.startsWith("http://") && !link.startsWith("https://"))
                 link = "http://" + link;
