@@ -49,12 +49,10 @@ public class AnnouncementsFragment extends Fragment {
     @Bind(R.id.loading_view) LoadingView mLoadingView;
 
     @Bind(R.id.float_menu) FloatingActionMenu mFloatMenu;
-    @Bind(R.id.fab1) FloatingActionButton mFab1;
-    @Bind(R.id.fab2) FloatingActionButton mFab2;
-    @Bind(R.id.fab3) FloatingActionButton mFab3;
+    @Bind(R.id.quote_fab) FloatingActionButton mFab1;
+    @Bind(R.id.link_fab) FloatingActionButton mFab2;
+    @Bind(R.id.event_fab) FloatingActionButton mFab3;
 
-//    @Bind(R.id.link_edit_text) EditText mLinkEditText;
-//    @Bind(R.id.link_description_edit_text) EditText mLinkDescriptionEditText;
 
     //TODO: define them with ButterKnife
     //link dialog components.
@@ -64,10 +62,9 @@ public class AnnouncementsFragment extends Fragment {
     private String mSubjectName;
     private String mGrade;
     private String mAnnouncementName;
-    private String[] mAnnouncements = {};
     private ParseObject mAnnouncementsParseObject;
     private String mLink;
-    private List<ParseObject> mAnnouncementsObjects;
+    private List<ParseObject> mAnnouncementsObjectsList;
 
 
     public AnnouncementsFragment() {
@@ -94,12 +91,13 @@ public class AnnouncementsFragment extends Fragment {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 mLoadingView.setVisibility(View.INVISIBLE);
-                mAnnouncementsObjects = list;
+                mAnnouncementsObjectsList = list;
                 if (e == null) {
                     //successful
-                    mAnnouncements = new String[list.size()];
-                    int i = 0;
-                    for (ParseObject announcement : list) {
+                    //TODO: make class for Announcements.
+                    String[] mAnnouncements = new String[list.size()];
+                    for (int i = 0; i < list.size(); i++) {
+                        ParseObject announcement = list.get(i);
                         String s = announcement.getString(ParseConstants.KEY_TYPE);
                         switch (s) {
                             case ParseConstants.KEY_QUOTE:
@@ -111,8 +109,8 @@ public class AnnouncementsFragment extends Fragment {
                                         .getString(ParseConstants.KEY_IMPORTANT_LINK_DESCRIPTION);
                                 break;
                         }
-                        i++;
                     }
+
                     mAnnouncementsListView.setAdapter(new ArrayAdapter<>(getActivity(),
                             android.R.layout.simple_list_item_1, mAnnouncements));
                 } else {
@@ -175,13 +173,13 @@ public class AnnouncementsFragment extends Fragment {
         public void onClick(View v) {
 
             switch (v.getId()) {
-                case R.id.fab1: //doctor quote.
+                case R.id.quote_fab: //doctor quote.
                     showQuoteDialog();
                     break;
-                case R.id.fab2:
+                case R.id.link_fab:
                     showLinkDialog();
                     break;
-                case R.id.fab3:
+                case R.id.event_fab:
 
                     break;
             }

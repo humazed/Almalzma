@@ -45,9 +45,9 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
     @Bind(R.id.empty_text_view) TextView mEmptyTextView;
     @Bind(R.id.loading_view) LoadingView mLoadingView;
     @Bind(R.id.float_menu) FloatingActionMenu mFloatMenu;
-    @Bind(R.id.fab1) FloatingActionButton mFab1;
-    @Bind(R.id.fab2) FloatingActionButton mFab2;
-    @Bind(R.id.fab3) FloatingActionButton mFab3;
+    @Bind(R.id.quote_fab) FloatingActionButton mFab1;
+    @Bind(R.id.link_fab) FloatingActionButton mFab2;
+    @Bind(R.id.event_fab) FloatingActionButton mFab3;
 
 
     private int mPreviousVisibleItem;
@@ -152,14 +152,14 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
         public void onClick(View v) {
 
             switch (v.getId()) {
-                case R.id.fab1:
+                case R.id.quote_fab:
                     showInputDialog();
                     break;
-                case R.id.fab2:
+                case R.id.link_fab:
                     new FolderSelectorDialog().show(DataActivity.this);
 
                     break;
-                case R.id.fab3:
+                case R.id.event_fab:
 
                     break;
             }
