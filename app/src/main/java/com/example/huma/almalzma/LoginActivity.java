@@ -14,13 +14,17 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 public class LoginActivity extends AppCompatActivity {
+    @Bind(R.id.name_edit_text) EditText mNameEditText;
+    @Bind(R.id.password_edit_text) EditText mPasswordEditText;
+    @Bind(R.id.signup_text_view) TextView mSignupTextView;
+    @Bind(R.id.login_button) Button mLoginButton;
+    @Bind(R.id.loading_view) LoadingView mLoadingView;
 
-    EditText mNameEditText, mPasswordEditText;
-    TextView mSignupTextView;
-    Button mLoginButton;
-    LoadingView mLoadingView;
 
     String mName, mPassword;
 
@@ -28,12 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        mNameEditText = (EditText) findViewById(R.id.name_login);
-        mPasswordEditText = (EditText) findViewById(R.id.password_login);
-        mSignupTextView = (TextView) findViewById(R.id.signup_tv_login);
-        mLoginButton = (Button) findViewById(R.id.button_login);
-        mLoadingView = (LoadingView) findViewById(R.id.login_loading_view);
+        ButterKnife.bind(this);
 
         //go to SignupActivity.
         mSignupTextView.setOnClickListener(new View.OnClickListener() {

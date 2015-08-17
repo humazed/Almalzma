@@ -21,14 +21,14 @@ import com.example.huma.almalzma.subject.SubjectActivity;
 import com.github.clans.fab.FloatingActionButton;
 import com.parse.ParseUser;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+    @Bind(R.id.subjects_listView) ListView mSubjectsListView;
+    @Bind(R.id.empty_text_view) TextView mEmptyTextView;
+    @Bind(R.id.fab) FloatingActionButton mFab;
 
-
-    private ListView mSubjectsListView;
-    private TextView mEmptyTextView;
-
-    private FloatingActionButton mFab;
 
     public static ParseUser mCurrentUser;
 
@@ -40,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mSubjectsListView = (ListView) findViewById(R.id.subjects_list_view);
-        mEmptyTextView = (TextView) findViewById(R.id.empty);
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        ButterKnife.bind(this);
 
         mCurrentUser = ParseUser.getCurrentUser();
         if (mCurrentUser == null) {

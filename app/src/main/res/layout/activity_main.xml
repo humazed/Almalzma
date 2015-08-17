@@ -6,13 +6,13 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/empty"
+        android:id="@+id/empty_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/coming_soon_message" />
 
     <ListView
-        android:id="@+id/subjects_list_view"
+        android:id="@+id/subjects_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"

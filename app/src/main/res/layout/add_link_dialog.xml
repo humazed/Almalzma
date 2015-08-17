@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.rey.material.widget.EditText
-        android:id="@+id/add_link_dialog_link"
+        android:id="@+id/link_edit_text"
         style="@style/Material.Widget.EditText.Light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         app:et_supportTextErrorColor="#FFFF0000" />
 
     <com.rey.material.widget.EditText
-        android:id="@+id/add_link_dialog_description"
+        android:id="@+id/link_description_edit_text"
         style="@style/Material.Widget.EditText.Light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

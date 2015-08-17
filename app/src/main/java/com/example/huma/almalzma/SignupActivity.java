@@ -18,14 +18,28 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 public class SignupActivity extends AppCompatActivity {
+    @Bind(R.id.name_edit_text) EditText mNameEditText;
+    @Bind(R.id.email_edit_text) EditText mEmailEditText;
+    @Bind(R.id.password_edit_text) EditText mPasswordEditText;
+    @Bind(R.id.password_confirm_edit_text) EditText mPasswordConfirmEditText;
+    @Bind(R.id.department_text_view) TextView mDepartmentTextView;
+    @Bind(R.id.grade_text_view) TextView mGradeTextView;
+    @Bind(R.id.signup_button) Button mSignupButton;
+    @Bind(R.id.grade_spinner) Spinner mGradeSpinner;
+    @Bind(R.id.department_spinner) Spinner mDepartmentSpinner;
+    @Bind(R.id.loading_view) LoadingView mLoadingView;
 
-    EditText mNameEditText, mEmailEditText, mPasswordEditText, mPasswordConfirmEditText;
-    Button mSignupButton;
-    TextView mDepartmentTextView, mGradeTextView;
-    Spinner mDepartmentSpinner, mGradeSpinner;
-    LoadingView mLoadingView;
+
+//    EditText mNameEditText, mEmailEditText, mPasswordEditText, mPasswordConfirmEditText;
+//    Button mSignupButton;
+//    TextView mDepartmentTextView, mGradeTextView;
+//    Spinner mDepartmentSpinner, mGradeSpinner;
+//    LoadingView mLoadingView;
 
     String mName, mEmail, mPassword, mPasswordConfirm;
     String mDepartment = "x", mGrade;
@@ -34,24 +48,16 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
-        mNameEditText = (EditText) findViewById(R.id.name_signup);
-        mEmailEditText = (EditText) findViewById(R.id.email_signup);
-        mPasswordEditText = (EditText) findViewById(R.id.password_signup);
-        mPasswordConfirmEditText = (EditText) findViewById(R.id.password_confirm_signup);
-        mDepartmentTextView = (TextView) findViewById(R.id.department_text_view);
-        mGradeTextView = (TextView) findViewById(R.id.grade_text_view);
-        mSignupButton = (Button) findViewById(R.id.button_signup);
-        mGradeSpinner = (Spinner) findViewById(R.id.grade_spinner);
-        mDepartmentSpinner = (Spinner) findViewById(R.id.department_spinner);
-        mLoadingView = (LoadingView) findViewById(R.id.signup_loading_view);
+        ButterKnife.bind(this);
 
 
-        /*the construct of grade which passed to parse.com is as following
+        /*
+        *the construct of grade which passed to parse.com is as following
         * department_grade_  and then at main add the term
         * so the full grade will be department_grade_term
         * for prep I used "0"
-        * and for the rest of departments used the first letter of them.*/
+        * and for the rest of departments used the first letter of them.
+        */
         //Let the user choose his Department.
         mDepartmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

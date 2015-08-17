@@ -37,15 +37,18 @@ import com.parse.SaveCallback;
 import java.io.File;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class DataActivity extends AppCompatActivity implements FolderSelectorDialog.FolderSelectCallback {
+    @Bind(R.id.data_list_view) ListView mDataListView;
+    @Bind(R.id.empty_text_view) TextView mEmptyTextView;
+    @Bind(R.id.loading_view) LoadingView mLoadingView;
+    @Bind(R.id.float_menu) FloatingActionMenu mFloatMenu;
+    @Bind(R.id.fab1) FloatingActionButton mFab1;
+    @Bind(R.id.fab2) FloatingActionButton mFab2;
+    @Bind(R.id.fab3) FloatingActionButton mFab3;
 
-
-    private ListView mDataListView;
-    private TextView mEmptyTextView;
-    private LoadingView mLoadingView;
-
-    private FloatingActionMenu mFloatingActionMenu;
-    private FloatingActionButton mFab1, mFab2, mFab3;
 
     private int mPreviousVisibleItem;
     private String mLectureName;
@@ -108,16 +111,8 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
+        ButterKnife.bind(this);
 
-        //findViewById
-        mDataListView = (ListView) findViewById(R.id.data_list_view);
-        mEmptyTextView = (TextView) findViewById(R.id.empty);
-        mLoadingView = (LoadingView) findViewById(R.id.data_loading_view);
-
-        mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.data_float_menu);
-        mFab1 = (FloatingActionButton) findViewById(R.id.data_fab1);
-        mFab2 = (FloatingActionButton) findViewById(R.id.data_fab2);
-        mFab3 = (FloatingActionButton) findViewById(R.id.data_fab3);
 
         mDataListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -132,15 +127,15 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
         mDataListView.setOnScrollListener(scrollListener);
 
         //control the FloatingActionMenu.
-        mFloatingActionMenu.hideMenuButton(false);
-        mFloatingActionMenu.setClosedOnTouchOutside(true);
+        mFloatMenu.hideMenuButton(false);
+        mFloatMenu.setClosedOnTouchOutside(true);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mFloatingActionMenu.showMenuButton(true);
-                mFloatingActionMenu.setMenuButtonShowAnimation(AnimationUtils.loadAnimation(DataActivity.this, R.anim.show_from_bottom));
-                mFloatingActionMenu.setMenuButtonHideAnimation(AnimationUtils.loadAnimation(DataActivity.this, R.anim.hide_to_bottom));
+                mFloatMenu.showMenuButton(true);
+                mFloatMenu.setMenuButtonShowAnimation(AnimationUtils.loadAnimation(DataActivity.this, R.anim.show_from_bottom));
+                mFloatMenu.setMenuButtonHideAnimation(AnimationUtils.loadAnimation(DataActivity.this, R.anim.hide_to_bottom));
             }
         }, 300);
 
@@ -157,14 +152,14 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
         public void onClick(View v) {
 
             switch (v.getId()) {
-                case R.id.data_fab1:
+                case R.id.fab1:
                     showInputDialog();
                     break;
-                case R.id.data_fab2:
+                case R.id.fab2:
                     new FolderSelectorDialog().show(DataActivity.this);
 
                     break;
-                case R.id.data_fab3:
+                case R.id.fab3:
 
                     break;
             }
@@ -233,9 +228,9 @@ public class DataActivity extends AppCompatActivity implements FolderSelectorDia
         @Override
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
             if (firstVisibleItem > mPreviousVisibleItem) {
-                mFloatingActionMenu.hideMenuButton(true);
+                mFloatMenu.hideMenuButton(true);
             } else if (firstVisibleItem < mPreviousVisibleItem) {
-                mFloatingActionMenu.showMenuButton(true);
+                mFloatMenu.showMenuButton(true);
             }
             mPreviousVisibleItem = firstVisibleItem;
         }

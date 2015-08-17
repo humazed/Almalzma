@@ -21,16 +21,18 @@ import com.example.huma.almalzma.R;
 import com.example.huma.almalzma.parse.ParseConstants;
 import com.github.clans.fab.FloatingActionButton;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SectionsFragment extends Fragment {
+    @Bind(R.id.sections_list_view) ListView mSectionsListView;
+    @Bind(R.id.empty_text_view) TextView mEmptyTextView;
+    @Bind(R.id.fab) FloatingActionButton mFab;
 
-    ListView mSectionsListView;
-    TextView mEmptyTextView;
-
-    private FloatingActionButton mFab;
 
     private int mPreviousVisibleItem;
     private String mSectionName;
@@ -57,13 +59,9 @@ public class SectionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sections, container, false);
+        ButterKnife.bind(this, view);
 
         final String[] weeks = getResources().getStringArray(R.array.weeks);
-
-        mSectionsListView = (ListView) view.findViewById(R.id.sections_frag_list_view);
-        mEmptyTextView = (TextView) view.findViewById(R.id.empty);
-
-        mFab = (FloatingActionButton) view.findViewById(R.id.sec_fab);
 
         mSectionsListView.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, weeks));
         mSectionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -124,4 +122,9 @@ public class SectionsFragment extends Fragment {
         }
     };
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 }

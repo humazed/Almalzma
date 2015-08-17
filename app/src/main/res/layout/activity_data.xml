@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/empty"
+        android:id="@+id/empty_text_view"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/coming_soon_message" />
@@ -19,7 +19,7 @@
 
 
     <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/data_float_menu"
+        android:id="@+id/float_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="10dp"
@@ -29,7 +29,7 @@
         fab:menu_labels_singleLine="true">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/data_fab1"
+            android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_insert_link_white"
@@ -37,7 +37,7 @@
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/data_fab2"
+            android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_insert_drive_file_white"
@@ -45,7 +45,7 @@
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/data_fab3"
+            android:id="@+id/fab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit"
@@ -56,7 +56,7 @@
 
 
     <com.mingle.widget.LoadingView
-        android:id="@+id/data_loading_view"
+        android:id="@+id/loading_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />

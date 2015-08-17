@@ -39,22 +39,27 @@ import com.rey.material.widget.EditText;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class AnnouncementsFragment extends Fragment {
+    @Bind(R.id.announcements_list_view) ListView mAnnouncementsListView;
+    @Bind(R.id.empty_text_view) TextView mEmptyTextView;
+    @Bind(R.id.loading_view) LoadingView mLoadingView;
 
-    private ListView mAnnouncementsListView;
-    private TextView mEmptyTextView;
-    private LoadingView mLoadingView;
+    @Bind(R.id.float_menu) FloatingActionMenu mFloatMenu;
+    @Bind(R.id.fab1) FloatingActionButton mFab1;
+    @Bind(R.id.fab2) FloatingActionButton mFab2;
+    @Bind(R.id.fab3) FloatingActionButton mFab3;
 
-    private FloatingActionMenu mFloatingActionMenu;
-    private FloatingActionButton mFab1, mFab2, mFab3;
+//    @Bind(R.id.link_edit_text) EditText mLinkEditText;
+//    @Bind(R.id.link_description_edit_text) EditText mLinkDescriptionEditText;
 
+    //TODO: define them with ButterKnife
     //link dialog components.
     private EditText mLinkEditText;
-    private EditText mDescriptionEditText;
+    private EditText mLinkDescriptionEditText;
 
     private String mSubjectName;
     private String mGrade;
@@ -126,17 +131,7 @@ public class AnnouncementsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_announcements, container, false);
-
-        //findViewById
-        mAnnouncementsListView = (ListView) view.findViewById(R.id.announcements_frag_list_view);
-        mEmptyTextView = (TextView) view.findViewById(R.id.empty);
-        mLoadingView = (LoadingView) view.findViewById(R.id.announcements_frag_loading_view);
-
-        mFloatingActionMenu = (FloatingActionMenu) view.findViewById(R.id.announcements_frag_float_menu);
-        mFab1 = (FloatingActionButton) view.findViewById(R.id.ann_fab1);
-        mFab2 = (FloatingActionButton) view.findViewById(R.id.ann_fab2);
-        mFab3 = (FloatingActionButton) view.findViewById(R.id.ann_fab3);
-
+        ButterKnife.bind(this, view);
 
         mAnnouncementsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -155,15 +150,15 @@ public class AnnouncementsFragment extends Fragment {
         mAnnouncementsListView.setOnScrollListener(scrollListener);
 
         //control the FloatingActionMenu.
-        mFloatingActionMenu.hideMenuButton(false);
-        mFloatingActionMenu.setClosedOnTouchOutside(true);
+        mFloatMenu.hideMenuButton(false);
+        mFloatMenu.setClosedOnTouchOutside(true);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mFloatingActionMenu.showMenuButton(true);
-                mFloatingActionMenu.setMenuButtonShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
-                mFloatingActionMenu.setMenuButtonHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
+                mFloatMenu.showMenuButton(true);
+                mFloatMenu.setMenuButtonShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
+                mFloatMenu.setMenuButtonHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
             }
         }, 300);
 
@@ -180,13 +175,13 @@ public class AnnouncementsFragment extends Fragment {
         public void onClick(View v) {
 
             switch (v.getId()) {
-                case R.id.ann_fab1: //doctor quote.
-                    showInputDialog();
+                case R.id.fab1: //doctor quote.
+                    showQuoteDialog();
                     break;
-                case R.id.ann_fab2:
-                    showCustomView();
+                case R.id.fab2:
+                    showLinkDialog();
                     break;
-                case R.id.ann_fab3:
+                case R.id.fab3:
 
                     break;
             }
@@ -194,7 +189,7 @@ public class AnnouncementsFragment extends Fragment {
 
     };
 
-    private void showInputDialog() {
+    private void showQuoteDialog() {
         new MaterialDialog.Builder(getActivity())
                 .title(R.string.doctor_quote_dialog_input)
                 .content(R.string.doctor_quote_dialog_content)
@@ -218,7 +213,7 @@ public class AnnouncementsFragment extends Fragment {
 
     boolean linkFlag, descriptionFlag;
 
-    private void showCustomView() {
+    private void showLinkDialog() {
         MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                 .title(R.string.important_link)
                 .customView(R.layout.add_link_dialog, true)
@@ -231,7 +226,7 @@ public class AnnouncementsFragment extends Fragment {
                         mAnnouncementsParseObject = new ParseObject(mAnnouncementName);
                         mLink = mLinkEditText.getText().toString();
                         mLink = Utility.validateLink(mLink);
-                        String description = mDescriptionEditText.getText().toString();
+                        String description = mLinkDescriptionEditText.getText().toString();
                         mAnnouncementsParseObject.put(ParseConstants.KEY_TYPE, ParseConstants.KEY_IMPORTANT_LINK);
                         mAnnouncementsParseObject.put(ParseConstants.KEY_IMPORTANT_LINK, mLink);
                         mAnnouncementsParseObject.put(ParseConstants.KEY_IMPORTANT_LINK_DESCRIPTION, description);
@@ -245,8 +240,8 @@ public class AnnouncementsFragment extends Fragment {
                 }).build();
 
         final View positiveAction = dialog.getActionButton(DialogAction.POSITIVE);
-        mLinkEditText = (EditText) dialog.getCustomView().findViewById(R.id.add_link_dialog_link);
-        mDescriptionEditText = (EditText) dialog.getCustomView().findViewById(R.id.add_link_dialog_description);
+        mLinkEditText = (EditText) dialog.getCustomView().findViewById(R.id.link_edit_text);
+        mLinkDescriptionEditText = (EditText) dialog.getCustomView().findViewById(R.id.link_description_edit_text);
 
         //it's only faction is to enable and disable the input Button.
         mLinkEditText.addTextChangedListener(new TextWatcher() {
@@ -278,7 +273,7 @@ public class AnnouncementsFragment extends Fragment {
 
         });
 
-        mDescriptionEditText.addTextChangedListener(new TextWatcher() {
+        mLinkDescriptionEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -330,11 +325,18 @@ public class AnnouncementsFragment extends Fragment {
         @Override
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
             if (firstVisibleItem > previousVisibleItem) {
-                mFloatingActionMenu.hideMenuButton(true);
+                mFloatMenu.hideMenuButton(true);
             } else if (firstVisibleItem < previousVisibleItem) {
-                mFloatingActionMenu.showMenuButton(true);
+                mFloatMenu.showMenuButton(true);
             }
             previousVisibleItem = firstVisibleItem;
         }
     };
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 }
+

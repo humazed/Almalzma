@@ -17,9 +17,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by huma on 4/30/2015.
- */
+
 public class FolderSelectorDialog extends DialogFragment implements MaterialDialog.ListCallback {
 
     private File parentFolder;

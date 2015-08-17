@@ -21,20 +21,17 @@ import com.example.huma.almalzma.R;
 import com.example.huma.almalzma.parse.ParseConstants;
 import com.github.clans.fab.FloatingActionButton;
 
-//import android.support.v4.app.Fragment;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class LecturesFragment extends Fragment {
+    @Bind(R.id.lectures_list_view) ListView mLecturesListView;
+    @Bind(R.id.empty_text_view) TextView mEmptyTextView;
+    @Bind(R.id.fab) FloatingActionButton mFab;
 
-    ListView mLecturesListView;
-    TextView mEmptyTextView;
-    private FloatingActionButton mFab;
 
     private int mPreviousVisibleItem;
-
     private String mLectureName;
 
 
@@ -59,14 +56,9 @@ public class LecturesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lectures, container, false);
+        ButterKnife.bind(this, view);
 
         final String[] weeks = getResources().getStringArray(R.array.weeks);
-
-        //findViewById
-        mLecturesListView = (ListView) view.findViewById(R.id.lectures_frag_list_view);
-        mEmptyTextView = (TextView) view.findViewById(R.id.empty);
-
-        mFab = (FloatingActionButton) view.findViewById(R.id.lec_fab);
 
         mLecturesListView.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, weeks));
         mLecturesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -127,5 +119,9 @@ public class LecturesFragment extends Fragment {
         }
     };
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 }

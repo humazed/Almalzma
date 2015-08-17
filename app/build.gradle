@@ -17,11 +17,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //for butterknife.
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
+
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
     compile 'com.parse.bolts:bolts-android:1.2.0'
     compile fileTree(include: 'Parse-*.jar', dir: 'libs')
     compile project(':shapeloading')
@@ -30,5 +41,5 @@ dependencies {
     compile 'com.ogaclejapan.smarttablayout:library:1.1.2@aar'
     compile 'com.ogaclejapan.smarttablayout:utils-v4:1.1.2@aar'
     compile 'com.github.rey5137:material:1.1.0'
-
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
